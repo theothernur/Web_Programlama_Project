@@ -15,11 +15,10 @@ namespace StudentsDatabase.Controllers
         private IConfiguration _config;
         CommonHelper _helper;
 
-        void AccountsController(IConfiguration config)
+        public AccountController(IConfiguration config)
         {
             _config = config;
             _helper = new CommonHelper(_config);
-
         }
 
         [HttpGet]
@@ -38,17 +37,16 @@ namespace StudentsDatabase.Controllers
             if (userExists == true)
             {
                 ViewBag.Error = "Username and Email Already Exists";
-                return View("Register", "LoginPartial");
+                return View("Register", "Accounts");
             }
 
-            string Query = "Insert into [StudentsDb] (Username, Email, Password, Name," + 
-                $"Contact)values('{vm.Username}', '{vm.Email}', '{vm.Password}', '{vm.Name}' ,'{vm.Contact}')";
+            string Query = "Insert into [StudentsDb] (Username, Email, Password, Name, Contact)values('{vm.Username}', '{vm.Email}', '{vm.Password}', '{vm.Name}' ,'{vm.Contact}')";
 
             int result = _helper.DMLTransaction(Query);
             if (result > 0)
             {
                 EntryIntoSession(vm.Username);
-                return RedirectToAction("Index", "Default");
+                return View("Index", "Accounts");
             }
             return View();
 
