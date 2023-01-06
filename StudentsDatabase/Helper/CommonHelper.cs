@@ -11,29 +11,10 @@ namespace StudentsDatabase.Helper
     {
         private IConfiguration _config;
         
-            public CommonHelper(IConfiguration config)
+        public CommonHelper(IConfiguration config)
         {
             _config = config;
         }
-
-        public int DMLTransaction(string Query)
-        {
-            int Result;
-            string connectionString = _config["ConnectionStrings:DefaultConnection"];
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                string sql = Query;
-                SqlCommand com = new SqlCommand(sql, connection);
-                Result = com.ExecuteNonQuery();
-                connection.Close();
-            }
-            return Result;
-
-        }
-
-
 
         public bool UserAlreadyExists(string query)
         {
@@ -53,6 +34,23 @@ namespace StudentsDatabase.Helper
                 connection.Close();
             }
             return flag;
+        }
+
+        public int DMLTransaction(string Query)
+        {
+            int Result;
+            string connectionString = _config["ConnectionStrings:DefaultConnection"];
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string sql = Query;
+                SqlCommand com = new SqlCommand(sql, connection);
+                Result = com.ExecuteNonQuery();
+                connection.Close();
+            }
+            return Result;
+
         }
 
 

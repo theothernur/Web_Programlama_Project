@@ -46,7 +46,8 @@ namespace StudentsDatabase.Controllers
             if (result > 0)
             {
                 EntryIntoSession(vm.Username);
-                return View("Index", "Accounts");
+                ViewBag.Success = "Successfully registered.";
+                return View();
             }
             return View();
 

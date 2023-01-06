@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using StudentsDatabase.Models;
+using StudentsDatabase.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -11,6 +12,8 @@ namespace StudentsDatabase.Controllers
 {
     public class HomeController : Controller
     {
+   
+
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
@@ -18,13 +21,14 @@ namespace StudentsDatabase.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+       public IActionResult Index()
         {
             return View();
         }
 
         public IActionResult Privacy()
         {
+
             return View();
         }
 

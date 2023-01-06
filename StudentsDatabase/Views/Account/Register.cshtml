@@ -48,6 +48,18 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
+@if (ViewBag.Error != null)
+{
+    <span class="alert alert-danger">@ViewBag.Error</span>
+}
+
+@if (ViewBag.Success!=null)
+{
+    <span class="alert alert-success">@ViewBag.Success</span>
+}
+
+
+
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
